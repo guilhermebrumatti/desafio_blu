@@ -1,5 +1,15 @@
 FROM python:3
-COPY . /app
-RUN pip install pandas && pip install sqlite3
+
 WORKDIR /app
-CMD python main.py
+
+COPY ./requirements.txt .
+
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+COPY main.py .
+
+COPY data_save.py .
+
+RUN mkdir /var/dados_extraidos
+
+CMD [ "python", "main.py" ]

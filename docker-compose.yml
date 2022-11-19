@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  image: teste_blu_image
+  container: teste_blu_cont
+  volumes:
+    - G:\Engenharia de dados\teste_blu:/var/dados_extraidos
