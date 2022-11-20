@@ -20,11 +20,10 @@ def app_func():
     df['edited'] = pd.to_datetime(df['edited'])
     df['edited'] = df['edited'].dt.strftime('%d/%m/%Y %H:%M')
 
-    df.to_csv('text.csv')
-
     #executando a funcao salvaDados do arquivo data_save.py, passando o dataframe como parâmetro
     salvaDados(df)
 
+#definindo DAG para que rode a aplicação uma vez ao dia
 with DAG('STARWARS_DATA', schedule='@daily', start_date=datetime(2022, 1, 1), catchup=False) as dag:
 
     t1 = PythonOperator(
