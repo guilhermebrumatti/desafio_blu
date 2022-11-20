@@ -2,10 +2,9 @@ import pandas as pd
 from data_save import salvaDados
 from datetime import datetime
 from airflow.operators.python import PythonOperator
-from airflow import DAG, Dataset
-from airflow.operators.bash import BashOperator
+from airflow import DAG
 
-def app():
+def app_func():
     #consultando url e transformando resultado em DataFrame
     df = pd.read_json('https://swapi.dev/api/films/?format=json')
     df.drop('count', axis=1, inplace=True)
@@ -14,6 +13,7 @@ def app():
     df = pd.DataFrame(df['results'].values.tolist(), index=df.index)
     df = df.applymap(str)
 
+    #formatando as datas das colunas created e edited
     df['created'] = pd.to_datetime(df['created'])
     df['created'] = df['created'].dt.strftime('%d/%m/%Y %H:%M')
 
@@ -22,17 +22,14 @@ def app():
 
     df.to_csv('text.csv')
 
+    #executando a funcao salvaDados do arquivo data_save.py, passando o dataframe como parâmetro
     salvaDados(df)
 
-with DAG(
-    dag_id='STARWARS_DATA', 
-    schedule_interval='@daily', 
-    start_date=datetime(2022, 1, 1), 
-    catchup=False) as dag:
-    
-    puxa_dados = PythonOperator(
-        task_id = 'puxa_dados',
-        python_callable = app()
+with DAG('STARWARS_DATA', schedule='@daily', start_date=datetime(2022, 1, 1), catchup=False) as dag:
+
+    t1 = PythonOperator(
+    task_id="Task_puxadados",
+    python_callable=app_func
     )
 
-    puxa_dados
+    t1
