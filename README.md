@@ -8,7 +8,7 @@ Nele foram aplicados conhecimentos de:<br><br>
 -AirFlow<br>
 -Banco de dados<br><br>
 
-# 1- CÓDIGO<br>
+# 1- O CÓDIGO<br>
 
 ```
 import pandas as pd
