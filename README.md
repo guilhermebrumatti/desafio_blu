@@ -86,3 +86,8 @@ O trecho acima está no fim do arquivo **main.py**<br>
 Ele é lido pelo AirFlow para que a aplicação possa ser orquestrada pelo AirFlow.<br>
 A DAG é chamada de **STARWARS_DATA** e deve ser executada pelo AirFlow uma vez por dia.<br>
 Uma task chamada **Task_puxadados** é criada afim de executar a função **app_func()**, que dará início ao processo de extração dos dados.<br>
+
+
+# 2- A ESTRUTURA DA TABELA CRIADA<br>
+
+<img src='https://github.com/guilhermebrumatti/guilhermebrumatti/blob/main/tabela.png' />
