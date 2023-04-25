@@ -1,9 +1,10 @@
-# DESAFIO BLU
+# DESAFIO STARWARS
 
-Este é o desafio proposto pela Blu.
+Este é o desafio proposto pela empresa X.
 
 Nele foram aplicados conhecimentos de:<br><br>
 -Python<br>
+-Pandas<br>
 -Docker<br>
 -AirFlow<br>
 -Banco de dados<br><br>
